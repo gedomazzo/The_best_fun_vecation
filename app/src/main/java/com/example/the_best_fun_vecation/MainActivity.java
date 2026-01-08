@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
     AlertDialog.Builder dname;
     Button sure;
-    String s;
     AlertDialog.Builder dsure;
 
 
@@ -72,17 +71,30 @@ public class MainActivity extends AppCompatActivity {
 
         dgear = new AlertDialog.Builder(this);
         dgear.setTitle("gear");
-        //dgear.setPositiveButton()
+        dgear.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        dgear.setNegativeButton("cansel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
 
         dgear.setMultiChoiceItems(fun_activities, null, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                if (isChecked)
+                if ((isChecked) && (!g.contains(fun_activities[which])) )
                     g = g + " " + fun_activities[which];
                 else {
                     g = g.replace(fun_activities[which], "");
                 }
             }
+
         });
 
         dgear.show();
@@ -102,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
         dsure.show();
 
-        txt.setText(t + "\n" + g + "\n" + n + "\n" + s);
+        txt.setText(t + "\n" + g + "\n" + n);
 
 
     }
