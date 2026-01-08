@@ -5,20 +5,21 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String[] colors = {"red", "green", "blue"};
+    TextView txt;
 
     Button type;
     String t;
 
     AlertDialog.Builder dtype;
     Button gear;
-    String g;
+    String g = "";
 
     AlertDialog.Builder dgear;
     Button name;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         gear = findViewById(R.id.gear);
         name = findViewById(R.id.name);
         sure = findViewById(R.id.sure);
+        txt = findViewById(R.id.txt);
     }
 
     @Override
@@ -48,17 +50,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void What_type(View view) {
-        int [] color = new int[]{0, 0, 0};
+        final String[] fun_activities = {"museum", "ballet", "restaurant", "pub"};
 
         dtype = new AlertDialog.Builder(this);
         dtype.setTitle("type of vacation");
 
 
-        dtype.setItems(colors, new DialogInterface.OnClickListener() {
+        dtype.setItems(fun_activities, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                color[which] = 255;
-                getWindow().getDecorView().setBackgroundColor(Color.rgb(color[0], color[1], color[2]));
+                t = fun_activities[which];
             }
         });
 
@@ -67,8 +68,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void What_gear(View view) {
+        final String[] fun_activities = {"museum", "ballet", "restaurant", "pub"};
+
         dgear = new AlertDialog.Builder(this);
         dgear.setTitle("gear");
+        //dgear.setPositiveButton()
+
+        dgear.setMultiChoiceItems(fun_activities, null, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                if (isChecked)
+                    g = g + " " + fun_activities[which];
+                else {
+                    g = g.replace(fun_activities[which], "");
+                }
+            }
+        });
 
         dgear.show();
     }
@@ -86,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
         dsure.setTitle("sure");
 
         dsure.show();
+
+        txt.setText(t + "\n" + g + "\n" + n + "\n" + s);
+
+
     }
 
 
