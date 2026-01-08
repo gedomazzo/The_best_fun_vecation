@@ -43,7 +43,7 @@
             android:layout_weight="0" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/type"
             android:layout_width="match_parent"
             android:layout_height="120px"
             android:text="the type of vacation" />
@@ -54,7 +54,7 @@
             android:layout_weight="0" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/gear"
             android:layout_width="match_parent"
             android:layout_height="120px"
             android:text="gear" />
@@ -65,7 +65,7 @@
             android:layout_weight="0" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="120px"
             android:text="name" />
@@ -76,10 +76,10 @@
             android:layout_weight="0" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/sure"
             android:layout_width="match_parent"
             android:layout_height="120px"
-            android:text="Button" />
+            android:text="sure" />
     </LinearLayout>
 
     <Space
